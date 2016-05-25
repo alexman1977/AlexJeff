@@ -38,6 +38,8 @@ def get_subcategories(category):
 
     # Input
     user_input = input(prompt)
+
+    ## Case 1 is top level key
     if user_input in data[category]["data"].keys(): # Is a subcategory ex Thai
         # Build Second Prompt
         subcategory = user_input
@@ -56,11 +58,13 @@ def get_subcategories(category):
             pass
 
 
-
+    ## Case 2 is list item
     elif user_input in data[category]["data"].values():
         # Search List Items example ingredient
         # return one input output
         pass
+
+    ## Case 3 is not list item or top level key
     else: # If not cuisine or dish
         print("Sorry, {user_input} was not found, please try again.".format(user_input = user_input))
         get_subcategories(category)
