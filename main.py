@@ -6,6 +6,14 @@ with open('data.json','r') as f:
 
 # Input
 
+def start_again():
+    answer=input("Would you like to start again?")
+    if answer == 'Yes':
+        main()
+    else:
+        pass
+
+
 def user_results(input, ingredient = True):
     #input can either be ingredient or dish
 
@@ -35,13 +43,14 @@ def get_subcategories(category):
         subcategory = user_input
         child_key_list = list(data[category]["data"][subcategory].keys())
         child_key_list.sort()
-        child_key_list = ", ".join(child_key_list)
-        second_prompt = strings['second_prompt'].format(child_keys = child_key_list)
+        child_key_list_formatted = ", ".join(child_key_list)
+        second_prompt = strings['second_prompt'].format(child_keys = child_key_list_formatted)
         response = input(second_prompt)
         # return two_inputs_output
-        if response == None:# dish
+        if response in child_key_list:
             #return ingredient/two input outputs
-            pass
+            print(strings[two_inputs_output])
+            start_again()
         else:
             #repeat  prompt
             pass
