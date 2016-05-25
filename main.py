@@ -17,7 +17,13 @@ def get_subcategories(category,data):
         #do something
         pass
 
-def get_category(data):
+# Transform
+
+# Output
+
+
+# ----- Main ----
+def main():
     is_category = False
     while not is_category:
         user_input = input("Enter a category: \n") #prompt for category
@@ -28,18 +34,6 @@ def get_category(data):
             print("True!")
         else:
             print("Category not found, please try again.")
-
-
-
-
-# Transform
-
-# Output
-
-
-# ----- Main ----
-def main():
-    get_category(data)
 
 
 main()
