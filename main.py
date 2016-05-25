@@ -1,10 +1,13 @@
 # Setup
 import json
 
+with open('data.json','r') as f:
+    data = json.loads(f.read())
+
 # Input
 
 def get_subcategories(category,data):
-    user_input = input(data[category]['strings']['first_prompt'].format(parent_keys = ", ".join(list(data[category]["data"].keys()))))
+    user_input = input(build_first_prompt(category))
     if user_input in data[category]["data"].keys() #is a cuisine key :
         pass#do something
     elif user_input in data[category]["data"].values():
@@ -23,19 +26,20 @@ def get_category(data):
         else:
             print("Category not found, please try again.")
 
-# Transform
-def json_to_dict(file_name):
-    with open(file_name,'r') as f:
-        json_data = json.loads(f.read())
-        return json_data
+def build_first_prompt(category):
+    value_list = list(data[category]["data"].keys())
+    value_list.sort()
 
+    return data[category]['strings']['first_prompt'].format(parent_keys = ", ".join((value_list)))
+
+
+# Transform
 
 # Output
 
 
 # ----- Main ----
-def main(data):
-    dictionary = json_to_dict(data)
+def main():
     get_category(data)
 
 
