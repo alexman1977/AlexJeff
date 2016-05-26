@@ -38,6 +38,10 @@ def get_subcategories(category):
 
     # Input
     user_input = input(prompt)
+    item_list = []
+    for cuisine in data[category]["data"]:
+        for dish in data[category]["data"][cuisine]:
+            item_list = item_list + data[category]["data"][cuisine][dish]
 
     ## Case 1 is top level key
     if user_input in data[category]["data"].keys(): # Is a subcategory ex Thai
@@ -51,7 +55,17 @@ def get_subcategories(category):
         # return two_inputs_output
         if response in child_key_list:
             #return ingredient/two input outputs
-            print(strings[two_inputs_output])
+
+            # for i in child_key_list[response]:
+            #     print(i)
+
+            list_of_ingredients = data[category]["data"][subcategory][response]
+            ingredients_string = "\n• ".join(list_of_ingredients)
+
+
+            print(strings['two_inputs_output'].format(parent_key = user_input, child_key = response, items = ingredients_string))
+
+
             start_again()
         else:
             #repeat  prompt
@@ -59,10 +73,17 @@ def get_subcategories(category):
 
 
     ## Case 2 is list item
-    elif user_input in data[category]["data"].values():
+    elif user_input in item_list:
         # Search List Items example ingredient
+        list_of_child_keys = []
         # return one input output
-        pass
+        for cuisine in data[category]["data"]:
+            for dish in data[category]["data"][cuisine]:
+                if user_input in data[category]["data"][cuisine][dish]:
+                    list_of_child_keys.append((cuisine,dish))
+
+        for tuple_item in list_of_child_keys:
+            print(strings["one_input_output"].format(list_item = user_input, parent_key = tuple_item[0], child_key = tuple_item[1]))
 
     ## Case 3 is not list item or top level key
     else: # If not cuisine or dish
