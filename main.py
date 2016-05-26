@@ -69,7 +69,8 @@ def get_subcategories(category):
             start_again()
         else:
             #repeat  prompt
-            pass
+            print ("Please enter another item")
+            get_subcategories(category)
 
 
     ## Case 2 is list item
@@ -86,6 +87,8 @@ def get_subcategories(category):
             print(strings["one_input_output"].format(list_item = user_input, parent_key = tuple_item[0], child_key = tuple_item[1]))
 
     ## Case 3 is not list item or top level key
+    elif user_input is "":
+        start_again()
     else: # If not cuisine or dish
         print("Sorry, {user_input} was not found, please try again.".format(user_input = user_input))
         get_subcategories(category)
