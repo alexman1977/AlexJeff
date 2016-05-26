@@ -83,8 +83,12 @@ def main():
             # get top - level category
             get_subcategories(user_input)
             is_category = True
+        elif user_input == "":
+            break
         else:
             print("Category not found, please try again.")
+
+        #allow exit of the loop for user
 
 
 main()
