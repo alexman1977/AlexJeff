@@ -7,8 +7,8 @@ with open('data.json','r') as f:
 # Input
 
 def start_again():
-    answer=input("Would you like to start again?")
-    if answer == 'Yes':
+    answer=input("Would you like to start again? (y/n)")
+    if answer == 'Yes' or answer == 'y':
         main()
     else:
         pass
